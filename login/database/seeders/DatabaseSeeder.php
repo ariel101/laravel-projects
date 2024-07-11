@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Mascotas;
+use App\Models\Propietario;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
@@ -21,6 +23,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call(PropietarioSeeder::class);
+        $this->call(MascotasSeeder::class);
 
         User::factory()->create(
             [

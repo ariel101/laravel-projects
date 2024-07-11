@@ -1,0 +1,57 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.container-fluid {
+    width: 99%;
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0; /* Corregido: Era margin-left en lugar de margin-right */
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex-grow: 1;
+    display: flex;
+}
+
+.sidebar {
+    height: 100%;
+}
+
+.main {
+    height: 100%;
+    overflow-y: auto;
+}
+.sidebar-sticky li{
+    list-style: none;
+    display: flex;
+    margin-bottom: 25px;
+}
+.sidebar-sticky a{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10px;
+    color: rgb(233, 249, 244);
+}
+.sidebar-sticky span{
+    
+    white-space: nowrap;
+    
+}
+.sidebar-sticky a:hover{
+    background-color: aqua;
+    color: rgb(253, 24, 50);
+}
+.sidebar-sticky ion-icon{
+    min-width: 50px;
+    font-size: 40px;
+    cursor: pointer;
+}

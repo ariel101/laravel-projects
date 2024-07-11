@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MascotaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login',[LoginController::class,'login']);
-Route::middleware('jwt.verify')->apiResource('mascota',MascotaController::class);
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+route::post('login',[LoginController::class, 'login']);
+Route::middleware('jwt.auth')->apiResource('category',CategoryController::class);
