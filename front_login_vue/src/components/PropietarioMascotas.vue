@@ -11,6 +11,15 @@ const fetchUsers = async () => {
     }
 }
 
+const deleteMascota = async(id)=> {
+    try {
+        const response = await axiosInstance.delete(`/mascota/${id}`);
+        fetchUsers()
+    } catch (error) {
+        console.error('error al eliminar la mascota',error)
+    }
+}
+
 onMounted(() => {
     fetchUsers()
 })
@@ -19,6 +28,9 @@ onMounted(() => {
 <template>
     <div>
         <h1>Lista de Usuarios</h1>
+        <router-link :to="{name:'insertar'}">
+            <button>insertar Mascota</button>
+        </router-link>
 
         <table>
             <thead>
@@ -29,6 +41,7 @@ onMounted(() => {
                     <th>Edad</th>
                     <th>Propietario</th>
                     <th>Direccion</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +52,10 @@ onMounted(() => {
                     <td>{{ user.edad }}</td>
                     <td>{{ user.propietarioId }}</td>
                     <td>{{ user.direccion }}</td>
+                    <td>
+                        <button @click="deleteMascota(user.id)">Eliminar</button>
+                        <router-link :to="{name:'editar', params:{id: user.id}}">Editar</router-link>
+                    </td>
                 </tr>
             </tbody>
         </table>

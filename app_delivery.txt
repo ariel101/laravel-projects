@@ -1,0 +1,2 @@
+---------------app delivery backend php laravel---------------
+**ojo con valores nulos en los llaves foraneas en las tablas de migration

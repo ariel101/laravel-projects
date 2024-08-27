@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MascotaController;
+use App\Http\Controllers\PropietarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login',[LoginController::class,'login']);
 Route::middleware('jwt.verify')->apiResource('mascota',MascotaController::class);
+Route::middleware('jwt.verify')->apiResource('propietario',PropietarioController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
