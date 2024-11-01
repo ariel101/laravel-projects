@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class DriverController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $product = Product::all();
+        return $product;
     }
 
     /**
@@ -19,7 +22,8 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = $request->all();
+        
     }
 
     /**

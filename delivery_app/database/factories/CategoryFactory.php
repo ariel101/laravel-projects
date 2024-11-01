@@ -16,8 +16,12 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = [
+            'Pollos', 'Pizzas', 'Hamburguesas', 'Tradiciones Chuquisaqueñas', 
+            'Carnes', 'Restaurantes', 'Salteñas y Tucumanas', 'Cafés y Postres', 'Otros'];
         return [
             //
+            'name' => $this->faker->unique()->randomElement($categories)
         ];
     }
 }
