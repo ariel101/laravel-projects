@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Web\BusinessController;
+use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\DriverController;
 use App\Http\Controllers\Web\ProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +28,6 @@ Route::middleware([
 });
 
 Route::resource('products', ProductController::class);
+Route::resource('drivers', DriverController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('businesses',BusinessController::class);

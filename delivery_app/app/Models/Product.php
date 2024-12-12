@@ -12,8 +12,6 @@ class Product extends Model
         'category_id',
         'name',
         'description',
-        'price',
-        'stock',
         'image'
     ];
 
@@ -23,5 +21,8 @@ class Product extends Model
 
     public function orders(){
         return $this->belongsToMany(Order::class);
+    }
+    public function businesses(){
+        return $this->belongsToMany(Business::class,'product_businesses')->withPivot('price','availability')->withTimestamps();
     }
 }

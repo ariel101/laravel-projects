@@ -12,7 +12,7 @@ class CategoryController extends Controller
     //
     public function index(){
         $category = Category::all();
-        return Inertia::render('category/index',['category'=> $category]);
+        return Inertia::render('Categories/Index',['categories'=> $category]);
     }
 
     public function create(){

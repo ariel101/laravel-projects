@@ -21,7 +21,7 @@ class CategoryFactory extends Factory
             'Carnes', 'Restaurantes', 'Salteñas y Tucumanas', 'Cafés y Postres', 'Otros'];
         return [
             //
-            'name' => $this->faker->unique()->randomElement($categories)
+            'name' => $this->faker->randomElement($categories)
         ];
     }
 }
