@@ -2,6 +2,7 @@
 import { reactive, watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import axios from 'axios';
+import { useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
   showModal: Boolean,
@@ -15,96 +16,51 @@ const props = defineProps({
 const emit = defineEmits(['close', 'refreshProducts']);
 
 // Usar reactive para crear un producto editable
-const localProduct = reactive({ ...props.product });
-console.log("este el objeto que esta llegando", localProduct.id)
+// const localProduct = reactive({ ...props.product });
+// console.log("este el objeto que esta llegando", localProduct.name)
 
 // Observar cambios en el prop product y actualizar el localProduct
+// watch(() => props.product, (newProduct) => {
+//   Object.assign(localProduct, newProduct); // Actualiza localProduct, manteniendo la reactividad
+//   console.log("producto actualizado:", localProduct)
+// }, { immediate: true });
+
+
+const form = useForm({
+  id: props.product.id,
+  name: props.product.name,
+  category_id: props.product.category_id,
+  description: props.product.description,
+  image_path: props.product.image_path,
+});
+console.log("Formulario inicializado:", form);
+
+// Observar cambios en el prop product y actualizar el formulario
 watch(() => props.product, (newProduct) => {
-  Object.assign(localProduct, newProduct); // Actualiza localProduct, manteniendo la reactividad
+  form.id = newProduct.id;
+  form.name = newProduct.name;
+  form.category_id = newProduct.category_id;
+  form.description = newProduct.description;
+  form.image_path = newProduct.image_path;
+  console.log("Formulario actualizado con nuevos datos del producto:", form);
 }, { immediate: true });
 
-// Función para enviar los datos al servidor
-const submit = async () => {
-  try {
-    if (!localProduct.id) {
-      console.error("El producto no tiene un ID válido:", localProduct.id);
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('name', localProduct.name); // Clave correcta
-    formData.append('category_id', localProduct.category_id); // Clave correcta
-    formData.append('description', localProduct.description); // Clave correcta
-    formData.append('image_path', localProduct.image_path);
-
-    //const url = route('products.update', localProduct.id);
-    const url = `/products/${localProduct.id}`;
-    console.log('URL generada:', url);
-    console.log('Datos enviados:', [...formData.entries()]);
-
-    const response = await axios.put(url, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      }
-    });
-
-    console.log('Respuesta del servidor:', response.data);
-    alert('Producto actualizado correctamente');
-
-  } catch (error) {
-    if (error.response) {
-      console.error('Respuesta del servidor con error:', error.response.data);
-    } else if (error.request) {
-      console.error('No hubo respuesta del servidor. Solicitud enviada:', error.request);
-    } else {
-      console.error('Error en la configuración de la solicitud:', error.message);
-    }
-  }
-};
-
-// const handleFileUpload = (event) => {
-//   localProduct.image_path = event.target.files[0];
-// };
 const submitTest = async () => {
   try {
-    // Datos de prueba
-    const testProductId = 1;
-    const formData = new FormData();
-    formData.append('name', 'Producto de Prueba desde Consola');
-    formData.append('category_id', 2);
-    formData.append('description', 'Descripción de Prueba desde Consola');
-    formData.append('image_path', new Blob(['imagen de prueba'], { type: 'image/png' }));
-
-    const url = 'http://127.0.0.1:8000/products/1'; // Usa la URL absoluta para asegurarte
-
-    axios.put(url, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      }
-    }).then(response => {
-      console.log('Respuesta del servidor:', response.data);
-    }).catch(error => {
-      if (error.response) {
-        console.error('Respuesta del servidor con error:', error.response.data);
-      } else if (error.request) {
-        console.error('No hubo respuesta del servidor. Solicitud enviada:', error.request);
-      } else {
-        console.error('Error en la configuración de la solicitud:', error.message);
+    console.log("los datos antes de ser enviados:", form)
+    form.put(route('products.update', form.id), {
+      preserveScroll: true,
+      onSuccess: () => {
+        emit('close');
+        emit('refreshProducts');
+        alert('Producto actualizado correctamente');
+      },
+      onError: (errors) => {
+        console.error('Errores al actualizar el producto:', errors);
       }
     });
-
-
-    console.log('Respuesta del servidor:', response.data);
-    alert('Producto de prueba actualizado correctamente');
-
   } catch (error) {
-    if (error.response) {
-      console.error('Respuesta del servidor con error:', error.response.data);
-    } else if (error.request) {
-      console.error('No hubo respuesta del servidor. Solicitud enviada:', error.request);
-    } else {
-      console.error('Error en la configuración de la solicitud:', error.message);
-    }
+    console.error('Error inesperado al enviar el formulario:', error);
   }
 };
 
@@ -121,13 +77,13 @@ const submitTest = async () => {
         <!-- Nombre -->
         <div class="mb-4">
           <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
-          <input v-model="localProduct.name" type="text" id="name"
+          <input v-model="form.name" type="text" id="name"
             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
         </div>
         <!-- Categoría -->
         <div class="mb-4">
           <label for="category" class="block text-sm font-medium text-gray-700">Categoría</label>
-          <select v-model="localProduct.category_id" id="category"
+          <select v-model="form.category_id" id="category"
             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
             <option v-for="cat in categories" :key="cat.id" :value="cat.id">
               {{ cat.name }}
@@ -137,13 +93,13 @@ const submitTest = async () => {
         <!-- Descripción -->
         <div class="mb-4">
           <label for="description" class="block text-sm font-medium text-gray-700">Descripción</label>
-          <textarea v-model="localProduct.description" id="description" rows="4"
+          <textarea v-model="form.description" id="description" rows="4"
             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
         </div>
         <!-- Imagen -->
         <div class="mb-6">
           <label for="image" class="block text-sm font-medium text-gray-700">Subir Imagen</label>
-          <input v-model="localProduct.image_path" type="text" id="image"
+          <input v-model="form.image_path" type="text" id="image"
             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
         </div>
         <div class="flex items-center justify-end">
