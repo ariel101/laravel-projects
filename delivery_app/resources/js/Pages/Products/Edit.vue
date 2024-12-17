@@ -15,17 +15,6 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'refreshProducts']);
 
-// Usar reactive para crear un producto editable
-// const localProduct = reactive({ ...props.product });
-// console.log("este el objeto que esta llegando", localProduct.name)
-
-// Observar cambios en el prop product y actualizar el localProduct
-// watch(() => props.product, (newProduct) => {
-//   Object.assign(localProduct, newProduct); // Actualiza localProduct, manteniendo la reactividad
-//   console.log("producto actualizado:", localProduct)
-// }, { immediate: true });
-
-
 const form = useForm({
   id: props.product.id,
   name: props.product.name,
@@ -45,7 +34,7 @@ watch(() => props.product, (newProduct) => {
   console.log("Formulario actualizado con nuevos datos del producto:", form);
 }, { immediate: true });
 
-const submitTest = async () => {
+const submit = async () => {
   try {
     console.log("los datos antes de ser enviados:", form)
     form.put(route('products.update', form.id), {
@@ -73,7 +62,7 @@ const submitTest = async () => {
         ✖
       </button>
       <h2 class="text-2xl font-bold mb-6 text-center">Editar Producto</h2>
-      <form @submit.prevent="submitTest">
+      <form @submit.prevent="submit">
         <!-- Nombre -->
         <div class="mb-4">
           <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
