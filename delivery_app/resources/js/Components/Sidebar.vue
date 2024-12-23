@@ -15,7 +15,10 @@
         class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
         <i class="fas fa-home border-black mr-2"></i>Dashboard
       </inertia-link>
-      <inertia-link href="/admin/orders"
+      <inertia-link :href="route('clients.index')" class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
+        <i class="fas fa-users mr-2"></i>Clientes
+      </inertia-link>
+      <inertia-link :href="route('orders.index')"
         class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
         <i class="fas fa-box mr-2"></i>Pedidos
       </inertia-link>
@@ -31,12 +34,12 @@
         class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
         <i class="fas fa-tags mr-2"></i>Categorias
       </inertia-link>
-      <inertia-link href="/admin/users" class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
-        <i class="fas fa-users mr-2"></i>Clientes
-      </inertia-link>
       <inertia-link :href="route('businesses.index')"
         class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
         <i class="fas fa-briefcase mr-2"></i>Negocios
+      </inertia-link>
+      <inertia-link href="/admin/users" class="block py-2 px-4 hover:bg-gray-700 hover:text-slate-50 rounded-full mb-4">
+        <i class="fas fa-file-alt mr-2"></i>Reportes
       </inertia-link>
     </nav>
 

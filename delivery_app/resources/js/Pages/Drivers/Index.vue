@@ -28,7 +28,7 @@ const deleteDriver = (idDriver)=>{
         Inertia.delete(route('drivers.destroy', idDriver),{
             preserveScroll:true,
             onSuccess: ()=>{
-                drivers.value = drivers.value.filter(driver => drivers.id !== drivers.id)
+                drivers.value = drivers.value.filter(drivers => drivers.id !== drivers.id)
             }
         })
     }

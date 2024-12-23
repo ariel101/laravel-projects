@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Web\BusinessController;
 use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\ClientController;
 use App\Http\Controllers\Web\DriverController;
+use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\ProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +33,5 @@ Route::resource('products', ProductController::class);
 Route::resource('drivers', DriverController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('businesses',BusinessController::class);
+Route::resource('clients', ClientController::class);
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

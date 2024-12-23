@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        'client_id',
         'driver_id',
         'delivery_address',
         'total_amount',
@@ -19,8 +19,8 @@ class Order extends Model
         'delivery_datetime'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function client(){
+        return $this->belongsTo(Client::class);
     }
 
     public function driver(){

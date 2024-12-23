@@ -1,0 +1,64 @@
+Reportes de Pedidos
+Pedidos Totales: Número total de pedidos realizados en un período específico.
+
+Pedidos Completados: Número de pedidos que han sido entregados exitosamente.
+
+Pedidos Pendientes: Pedidos que están en estado pendiente o en proceso.
+
+Pedidos Cancelados: Pedidos que han sido cancelados y las razones.
+
+Pedidos por Cliente: Análisis de pedidos realizados por cada cliente.
+
+Pedidos por Fecha: Pedidos agrupados por día, semana o mes.
+
+Reportes Financieros
+Ingresos Totales: Total de ingresos generados en un período específico.
+
+Ingresos por Producto: Ingresos desglosados por cada producto.
+
+Ingresos por Categoría: Ingresos agrupados por categoría de producto.
+
+Ingresos por Región: Ingresos desglosados por regiones o ciudades.
+
+Promociones y Descuentos: Impacto de promociones y descuentos en los ingresos.
+
+Reportes de Productos
+Productos Más Vendidos: Lista de los productos más vendidos en un período específico.
+
+Productos con Bajo Inventario: Productos que están a punto de agotarse.
+
+Inventario Actual: Estado actual del inventario de todos los productos.
+
+Rotación de Productos: Frecuencia con la que se venden los productos.
+
+Reportes de Clientes
+Clientes Activos: Número de clientes que han realizado compras recientes.
+
+Clientes Nuevos: Clientes que se han registrado y han realizado su primera compra.
+
+Clientes Frecuentes: Clientes que realizan compras recurrentes.
+
+Valor de Vida del Cliente (CLV): Ingresos generados por un cliente durante su relación con tu empresa.
+
+Historial de Pedidos por Cliente: Detalle de todos los pedidos realizados por cada cliente.
+
+Reportes de Entregas
+Tiempos de Entrega: Análisis del tiempo promedio de entrega de los pedidos.
+
+Entregas a Tiempo: Porcentaje de pedidos entregados dentro del plazo estimado.
+
+Entregas Retrasadas: Pedidos que han sido entregados fuera del plazo estimado y las razones de los retrasos.
+
+Reportes de Repartidores
+Rendimiento de Repartidores: Número de entregas realizadas por cada repartidor.
+
+Tiempos de Entrega por Repartidor: Tiempo promedio de entrega por repartidor.
+
+Calificaciones de Repartidores: Calificaciones y comentarios de clientes sobre los repartidores.
+
+Reportes de Negocios
+Rendimiento de Negocios: Análisis de ventas y rendimiento de cada negocio asociado.
+
+Ingresos por Negocio: Ingresos generados por cada negocio.
+
+Pedidos por Negocio: Número de pedidos realizados a través de cada negocio.

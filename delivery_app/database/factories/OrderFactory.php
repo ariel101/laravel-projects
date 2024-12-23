@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,13 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray(); // Obtener todos los IDs de clientes 
+        $clientId = $this->faker->randomElement($clientIds); // Seleccionar uno específico de la lista
+        $categoryId = Category::inRandomOrder()->first()->id;
         return [
             //
+            'client_id'=>$clientId, //asigna el id de cliente especifico
+            'driver_id'=> $categoryId,
             'delivery_address' => $this->faker->address,
             'total_amount' => $this->faker->randomFloat(2, 10, 100),
             'city' => $this->faker->city,
