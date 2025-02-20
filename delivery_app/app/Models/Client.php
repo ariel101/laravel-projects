@@ -35,6 +35,10 @@ class Client extends Authenticatable implements JWTSubject
         return $this->hasMany(Order::class);
     }
 
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
+
     /**
      * Devuelve el identificador que se almacenará en el token JWT.
      */

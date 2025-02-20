@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -25,5 +26,9 @@ class Product extends Model
     }
     public function businesses(){
         return $this->belongsToMany(Business::class,'product_businesses')->withPivot('price','availability')->withTimestamps();
+    }
+
+    public function carts(){
+        return $this->hasMany(Cart::class);
     }
 }

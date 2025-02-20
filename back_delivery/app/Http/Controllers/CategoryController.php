@@ -21,10 +21,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = $request->attributes->get('usuario');
-        $rol = collect($usuario->user->roles)->first();
+        $usuario = $request->attributes->get('usuario'); //obtenemos el usuario autenticado en el middleware 
+        $rol = collect($usuario->user->roles)->first(); //obtenemos el rol del usuario
         //$rol = $usuario->user->roles;
-        $name = $rol->name;
+        $name = $rol->name; //obtenemos el nombre del rol
         //return response()->json($name);
         return $name;
 

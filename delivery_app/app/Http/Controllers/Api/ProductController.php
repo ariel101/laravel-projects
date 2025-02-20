@@ -20,9 +20,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $product = $request->all();
+    public function addCart(){
         
     }
 
@@ -31,22 +29,14 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $product = Product::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        if (is_null($product)) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json($product);
     }
+    
+   
 }
